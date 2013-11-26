@@ -1,0 +1,29 @@
+<h1>Listing timeslots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Datetime</th>
+      <th>Event</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @timeslots.each do |timeslot| %>
+      <tr>
+        <td><%= timeslot.datetime %></td>
+        <td><%= timeslot.event_id %></td>
+        <td><%= link_to 'Show', timeslot %></td>
+        <td><%= link_to 'Edit', edit_timeslot_path(timeslot) %></td>
+        <td><%= link_to 'Destroy', timeslot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Timeslot', new_timeslot_path %>
