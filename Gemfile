@@ -9,10 +9,6 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'therubyracer', platforms: :ruby
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
