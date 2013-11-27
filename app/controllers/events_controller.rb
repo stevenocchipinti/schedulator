@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    3.times { @event.timeslots.build }
   end
 
   # GET /events/1/edit
@@ -69,6 +70,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :description)
+      params.require(:event).permit(
+        :name,
+        :description,
+        :timeslots_attributes => [:datetime, :event_id, :id]
+      )
     end
 end
