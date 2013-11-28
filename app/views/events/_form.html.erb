@@ -24,8 +24,8 @@
 
   <%= event.fields_for :timeslots do |timeslot| %>
     <div class="field">
-      <%= timeslot.label :datetime %><br />
-      <%= timeslot.datetime_select :datetime %>
+      <%= timeslot.label :datetime_string, "Timeslot ##{timeslot.options[:child_index] + 1}" %><br />
+      <%= timeslot.text_field :datetime_string %>
     </div>
   <% end %>
 
