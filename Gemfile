@@ -8,6 +8,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'therubyracer', platforms: :ruby
 
+gem 'chronic'
+
 
 group :development, :test do
   gem 'sqlite3'

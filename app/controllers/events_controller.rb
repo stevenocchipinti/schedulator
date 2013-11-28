@@ -73,7 +73,7 @@ class EventsController < ApplicationController
       params.require(:event).permit(
         :name,
         :description,
-        :timeslots_attributes => [:datetime, :event_id, :id]
+        :timeslots_attributes => [:datetime, :datetime_string, :event_id, :id]
       )
     end
 end
