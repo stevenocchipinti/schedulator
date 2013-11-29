@@ -26,3 +26,17 @@ Feature: Event Creation
     And I create the event
     Then A "dinner" event should exist without the following timeslots:
       | 2013-01-04 19:30:00 |
+
+  @javascript
+  Scenario: Dynamically add timeslots while creating an event
+    When I fill in a "dinner" event with the following timeslots:
+      | 6pm                |
+      | Tomorrow at 6:30pm |
+      | Friday, 7:30pm     |
+    And I add a new timeslot for "2 weeks from now"
+    And I create the event
+    Then A "dinner" event should exist with the following timeslots:
+      | 2013-01-01 18:00:00 |
+      | 2013-01-02 18:30:00 |
+      | 2013-01-04 19:30:00 |
+      | 2013-01-15 12:00:00 |

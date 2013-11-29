@@ -27,6 +27,11 @@ When(/^I remove the "(.*?)" timeslot$/) do |timeslot|
   remove_link_for(timeslot).click
 end
 
+When(/^I add a new timeslot for "(.*?)"$/) do |timeslot|
+  click_link "Add timeslot"
+  timeslot_fields.last.set timeslot
+end
+
 When(/^I create the event$/) do
   click_button "Create Event"
 end

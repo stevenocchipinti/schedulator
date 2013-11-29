@@ -26,6 +26,7 @@
     <%= event.fields_for :timeslots do |timeslot| %>
       <%= render 'timeslot', f: timeslot %>
     <% end %>
+    <%= link_to_add_fields "Add timeslot", event, :timeslots %>
   </fieldset>
 
   <div class="actions">
