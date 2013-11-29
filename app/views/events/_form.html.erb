@@ -24,7 +24,7 @@
   <fieldset>
     <legend>Timeslots</legend>
     <%= event.fields_for :timeslots do |timeslot| %>
-      <%= timeslot.text_field :datetime_string %></br />
+      <%= render 'timeslot', f: timeslot %>
     <% end %>
   </fieldset>
 
