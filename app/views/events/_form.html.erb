@@ -3,7 +3,6 @@
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
       <ul>
       <% @event.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -22,12 +21,12 @@
     <%= event.text_area :description %>
   </div>
 
-  <%= event.fields_for :timeslots do |timeslot| %>
-    <div class="field">
-      <%= timeslot.label :datetime_string, "Timeslot ##{timeslot.options[:child_index] + 1}" %><br />
-      <%= timeslot.text_field :datetime_string %>
-    </div>
-  <% end %>
+  <fieldset>
+    <legend>Timeslots</legend>
+    <%= event.fields_for :timeslots do |timeslot| %>
+      <%= timeslot.text_field :datetime_string %></br />
+    <% end %>
+  </fieldset>
 
   <div class="actions">
     <%= event.submit %>

@@ -5,8 +5,9 @@ end
 When(/^I create an? "(.*?)" event with the following timeslots:$/) do |name, timeslots|
   visit new_event_path
   fill_in "Name", with: name
+  timeslot_fields = within_fieldset("Timeslots") { all('input') }
   timeslots.raw.flatten.each_with_index do |timeslot, index|
-    fill_in "Timeslot ##{index+1}", with: timeslot
+    timeslot_fields[index].set timeslot
   end
   click_button "Create Event"
 end
