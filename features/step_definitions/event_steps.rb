@@ -1,21 +1,43 @@
 Given(/^today is "(.*?)"$/) do |datetime|
-  Timecop.freeze(Chronic.parse(datetime))
+  Timecop.travel(Chronic.parse(datetime))
 end
 
-When(/^I create an? "(.*?)" event with the following timeslots:$/) do |name, timeslots|
+When(/^I (fill in|create) an? "(.*?)" event with the following timeslots:$/) do |action, name, timeslots|
   visit new_event_path
   fill_in "Name", with: name
-  timeslot_fields = within_fieldset("Timeslots") { all('input') }
   timeslots.raw.flatten.each_with_index do |timeslot, index|
     timeslot_fields[index].set timeslot
   end
-  click_button "Create Event"
+  step "I create the event" if action == "create"
 end
 
-Then(/^A "(.*?)" event should exist with the following timeslots:$/) do |name, timeslots|
+Then(/^A "(.*?)" event should exist (with|without) the following timeslots:$/) do |name, comparison, timeslots|
   visit events_path
   click_link name
   timeslots.raw.flatten.each do |timeslot|
-    expect(page).to have_content(timeslot)
+    if comparison == "with"
+      expect(page).to have_content(timeslot)
+    elsif comparison == "without"
+      expect(page).not_to have_content(timeslot)
+    end
   end
+end
+
+When(/^I remove the "(.*?)" timeslot$/) do |timeslot|
+  remove_link_for(timeslot).click
+end
+
+When(/^I create the event$/) do
+  click_button "Create Event"
+end
+
+
+def remove_link_for(timeslot)
+  links = within_fieldset("Timeslots") { all('.remove_fields') }
+  index = timeslot_fields.map(&:value).index(timeslot)
+  links[index]
+end
+
+def timeslot_fields
+  within_fieldset("Timeslots") { all('input[type=text]') }
 end

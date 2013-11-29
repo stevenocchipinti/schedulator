@@ -19,6 +19,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'timecop'
   gem 'launchy'
+  gem 'capybara-webkit'
 
   gem 'debugger'
   gem 'pry'
