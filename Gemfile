@@ -22,7 +22,7 @@ group :development, :test do
   gem 'capybara-webkit'
 
   gem 'debugger'
-  gem 'pry'
+  gem 'pry-plus'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'awesome_print'
