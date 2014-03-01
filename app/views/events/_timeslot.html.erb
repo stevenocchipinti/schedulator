@@ -1,5 +1,11 @@
-<div class="field">
-  <%= f.text_field :datetime_string %>
-  <%= f.hidden_field :_destroy %>
-  <%= link_to "remove", "#", class: "remove_fields" %>
+<div class="input-group removable-field">
+  <%= f.text_field :datetime_string, class: "form-control" %>
+
+  <span class="input-group-btn">
+    <%= f.hidden_field :_destroy %>
+    <a href="#" class="remove_fields btn btn-default" type="button">
+      <span class="glyphicon glyphicon-remove"></span>
+    </a>
+  </span>
+
 </div>

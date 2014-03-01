@@ -28,7 +28,7 @@ When(/^I remove the "(.*?)" timeslot$/) do |timeslot|
 end
 
 When(/^I add a new timeslot for "(.*?)"$/) do |timeslot|
-  click_link "Add timeslot"
+  click_link "add-timeslot"
   timeslot_fields.last.set timeslot
 end
 
