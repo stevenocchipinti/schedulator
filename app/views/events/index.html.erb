@@ -1,11 +1,10 @@
 <h1>Listing events</h1>
 
-<ul>
+<ul class="list-group">
   <% @events.each do |event| %>
-    <li><%= link_to event.name, event %></li>
+    <li class="list-group-item">
+      <span class="badge">xx</span>
+      <%= link_to event.name, event %>
+    </li>
   <% end %>
 </ul>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>

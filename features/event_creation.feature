@@ -6,6 +6,7 @@ Feature: Event Creation
   Background:
     Given today is "1st of January, 2013"
 
+  @javascript
   Scenario: Create an event using natural language
     When I create a "dinner" event with the following timeslots:
       | 6pm                |
