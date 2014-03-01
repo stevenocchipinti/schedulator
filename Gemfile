@@ -29,6 +29,8 @@ group :development, :test do
 end
 
 
-group :doc do
-  gem 'sdoc', require: false
+group :production do
+  gem 'pg'
+  gem 'thin'
+  gem 'rails_12factor'
 end
