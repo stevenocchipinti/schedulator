@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+<h1><%= @event.name %></h1>
 
 <p>
-  <strong>Description:</strong>
   <%= @event.description %>
 </p>
 
 
 <p>
-  <strong>Timeslots:</strong>
   <ol>
     <% @event.timeslots.each do |timeslot| %>
       <li><%= timeslot.datetime %></li>
