@@ -14,7 +14,7 @@ describe Timeslot do
 
   describe "#datetime_string" do
     subject { timeslot.datetime_string }
-    before { timeslot.datetime_string = "2nd of January, 2013" }
+    before { timeslot.datetime_string = "2nd of January, 2013 at 12:00pm" }
 
     it "returns a human readable version of self.datetime" do
       expect(subject).to eq("2013-01-02 12:00:00")
