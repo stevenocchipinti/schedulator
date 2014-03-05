@@ -1,4 +1,10 @@
 language: ruby
 rvm:
-  - 2.0.0
+- 2.0.0
 script: xvfb-run bundle exec rake
+deploy:
+  provider: heroku
+  app: schedulator-app
+  run: "rake db:migrate"
+  api_key:
+    secure: JwZYBkBud0UJuZtSqQJ5E1J9Bg2/gss9Q/9YOAUF7ocmhGaUWrcUlNfC/ccNP8T2/3wTkBOA7q5VDkjyLzbFBzjgi9tC/vjBbwRp/KIoKWJr8w4q0OPzlU8Y8elMhpP0QCPK0FNumaFuSSnip/qz1cH75LkuzrB7R2f/FP4/92Y=
