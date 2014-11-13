@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.3'
 
 gem 'rails', '~> 4.0.3'
 gem 'sass-rails', '~> 4.0.0'
@@ -20,13 +20,11 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'timecop'
   gem 'launchy'
-  gem 'capybara-webkit'
+  gem 'poltergeist'
 
-  gem 'debugger'
-  gem 'pry-plus'
+  gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'awesome_print'
 end
 
 
