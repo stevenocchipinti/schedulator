@@ -12,10 +12,12 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
-# Poltergeist setup (uses PhantomJS)
+# Setup Capybara and Poltergeist (which uses PhantomJS)
+require 'capybara/rspec'
+require 'capybara/rails'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
-
+Capybara.default_driver = :poltergeist
 
 RSpec.configure do |config|
   # ## Mock Framework
