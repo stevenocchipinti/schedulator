@@ -16,10 +16,7 @@ group :development, :test do
   gem 'sqlite3'
 
   gem 'rspec-rails'
-  gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
   gem 'timecop'
-  gem 'launchy'
   gem 'poltergeist'
 
   gem 'pry-byebug'
