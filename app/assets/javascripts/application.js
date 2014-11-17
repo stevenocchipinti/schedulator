@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap/dist/js/bootstrap
+//= require underscore/underscore
+//= require moment/moment
+//= require clndr/src/clndr
 //= require_tree .

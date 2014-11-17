@@ -1,0 +1,31 @@
+#calendar {
+  max-width: 400px;
+}
+
+.header-day, .day {
+  float: left;
+  width: 100px / 7px * 1%;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid lightslategrey;
+}
+
+.header-day {
+  font-weight: bold;
+  background-color: lightslategrey;
+}
+
+.day {
+  background-color: slategrey;
+  &:hover { background-color: rgb(108, 115, 129); }
+}
+
+.past {
+  color: rgb(108, 115, 129);
+  &:hover { background-color: slategrey; }
+  &.adjacent-month { background-color: lightslategrey; }
+}
+
+.adjacent-month {
+  background-color: lightslategrey;
+}

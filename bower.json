@@ -17,6 +17,8 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.0.0"
+    "bootstrap": "~3.0.0",
+    "clndr": "~1.2.3",
+    "underscore": "~1.7.0"
   }
 }

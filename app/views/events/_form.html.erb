@@ -29,10 +29,12 @@
         <div class="form-group col-lg-12">
           <fieldset>
             <legend>Timeslots</legend>
-            <%= event.fields_for :timeslots do |timeslot| %>
-              <%= render 'timeslot', f: timeslot %>
-            <% end %>
-            <%= link_to_add_fields "Add timeslot", event, :timeslots %>
+            <div id="calendar"></div>
+
+            <%# <%= event.fields_for :timeslots do |timeslot| %1> %>
+            <%#   <%= render 'timeslot', f: timeslot %1> %>
+            <%# <% end %1> %>
+            <%# <%= link_to_add_fields "Add timeslot", event, :timeslots %1> %>
           </fieldset>
         </div>
 
@@ -46,5 +48,28 @@
       </fieldset>
     </form>
   </div>
+
+  <script type="text/template" id="full-clndr-template">
+    <div class="clndr-grid">
+      <div class="days-of-the-week clearfix">
+        <%% _.each(daysOfTheWeek, function(day) { %>
+          <div class="header-day"><%%= day %></div>
+        <%% }); %>
+      </div>
+      <div class="days clearfix">
+        <%% _.each(days, function(day) { %>
+          <div class="<%%= day.classes %>" id="<%%= day.id %>" data-datetime="<%%= day.date.format() %>">
+            <span class="day-number"><%%= day.day %></span>
+          </div>
+        <%% }); %>
+      </div>
+    </div>
+  </script>
+
+  <script>
+    $('#calendar').clndr({
+      template: $('#full-clndr-template').html()
+    });
+  </script>
 
 <% end %>
