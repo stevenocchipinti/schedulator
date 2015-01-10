@@ -1,0 +1,56 @@
+<script type="text/template" id="full-clndr-template">
+  <div class="clndr-controls">
+    <div class="clndr-previous-button">‹</div>
+    <div class="month"><%%= month %></div>
+    <div class="clndr-next-button">›</div>
+  </div>
+  <div class="clndr-grid">
+    <div class="days-of-the-week clearfix">
+      <%% _.each(daysOfTheWeek, function(day) { %>
+        <div class="header-day"><%%= day %></div>
+      <%% }); %>
+    </div>
+    <div class="days clearfix">
+      <%% _.each(days, function(day) { %>
+        <div class="<%%= day.classes %>" id="<%%= day.id %>" data-datetime="<%%= day.date.format() %>">
+          <span class="day-number"><%%= day.day %></span>
+        </div>
+      <%% }); %>
+    </div>
+  </div>
+</script>
+
+<script>
+  calendar = $('#calendar').clndr({
+    template: $('#full-clndr-template').html(),
+    events: getEvents(),
+    doneRendering: function() {
+      var dragging = false;
+      $('.day:not(.past)').on('mouseenter', function() {
+        if (dragging) {
+          if ($(this).hasClass('event')) {
+            console.log("delete it!", $(this).data('datetime'));   // TODO
+          } else {
+            $(this).addClass('event');
+            var time = new Date().getTime();
+            var regexp = new RegExp($('#new-field-template').data('key'), 'g');
+            var newField = $($('#new-field-template').html().replace(regexp, time));
+            newField.find('input[type=text]').val($(this).data('datetime'));
+            $('#calendar').after(newField);
+          }
+        }
+      });
+      $('.day:not(.past)').on('mousedown', function() {
+        dragging = true;
+        $(this).trigger('mouseenter');
+      });
+      $('body').on("mouseup", function() { dragging = false; });
+    }
+  });
+
+  function getEvents() {
+    return _.map($('.timeslot:visible'), function(i) {
+      return { date: $(i).val() }
+    });
+  }
+</script>

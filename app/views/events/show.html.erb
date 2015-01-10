@@ -6,13 +6,25 @@
   <%= @event.description %>
 </p>
 
-<p>
-  <ol>
-    <% @event.timeslots.each do |timeslot| %>
-      <li><%= timeslot.datetime %></li>
-    <% end %>
-  </ol>
-</p>
+<div class="btn-group" data-toggle="buttons">
+  <% @event.timeslots.each do |timeslot| %>
+    <label class="btn btn-primary active">
+      <input type="checkbox" autocomplete="off" checked> <%= timeslot.datetime.to_date %>
+    </label>
+  <% end %>
+</div>
+
+<ul class="list-group">
+  <% @event.timeslots.each do |timeslot| %>
+    <li class="list-group-item">
+      <label>
+        <input type="checkbox">
+        <%= timeslot.datetime.to_date %>
+      </label>
+    </li>
+
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

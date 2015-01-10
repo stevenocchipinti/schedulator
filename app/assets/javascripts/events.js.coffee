@@ -9,6 +9,6 @@ $ ->
 
   $('form').on 'click', '.add_fields', (event) ->
     time = new Date().getTime()
-    regexp = new RegExp($(this).data('id'), 'g')
+    regexp = new RegExp($(this).data('key'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()

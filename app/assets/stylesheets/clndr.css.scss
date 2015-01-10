@@ -1,31 +1,56 @@
 #calendar {
   max-width: 400px;
-}
-
-.header-day, .day {
-  float: left;
-  width: 100px / 7px * 1%;
   text-align: center;
-  padding: 5px;
-  border: 1px solid lightslategrey;
-}
 
-.header-day {
-  font-weight: bold;
-  background-color: lightslategrey;
-}
+  // Disable highlighting of text when dragging
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-.day {
-  background-color: slategrey;
-  &:hover { background-color: rgb(108, 115, 129); }
-}
+  .clndr-next-button, .clndr-previous-button {
+    float: left;
+    width: 100px / 7px * 1%;
+    font-weight: bold;
+    background-color: lightslategrey;
+    padding: 5px;
+    &:hover { background-color: rgb(108, 115, 129); }
+  }
 
-.past {
-  color: rgb(108, 115, 129);
-  &:hover { background-color: slategrey; }
-  &.adjacent-month { background-color: lightslategrey; }
-}
+  .month, .header-day  {
+    float: left;
+    width: 100px / 7px * 5%;
+    padding: 5px;
+    font-weight: bold;
+    background-color: lightslategrey;
+  }
 
-.adjacent-month {
-  background-color: lightslategrey;
+  .header-day, .day {
+    float: left;
+    width: 100px / 7px * 1%;
+    padding: 5px;
+    border: 1px solid lightslategrey;
+  }
+
+  .day {
+    background-color: slategrey;
+    &:hover { background-color: rgb(108, 115, 129); }
+    &.event {
+      background-color: #414961;
+      font-weight: bold;
+      color: #FFFFFF;
+    }
+  }
+
+  .past {
+    color: rgb(108, 115, 129);
+    &:hover { background-color: slategrey; }
+    &.adjacent-month { background-color: lightslategrey; }
+  }
+
+  .adjacent-month {
+    background-color: lightslategrey;
+  }
 }
