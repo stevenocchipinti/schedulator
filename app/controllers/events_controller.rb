@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     3.times { @event.timeslots.build }
+    3.times { @event.attendees.build }
   end
 
   # GET /events/1/edit
@@ -76,6 +77,12 @@ class EventsController < ApplicationController
         :timeslots_attributes => [
           :datetime,
           :datetime_string,
+          :event_id,
+          :id,
+          :_destroy
+        ],
+        :attendees_attributes => [
+          :email_address,
           :event_id,
           :id,
           :_destroy

@@ -1,3 +1,13 @@
-// Place all the styles related to the events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// ref: http://bavotasan.com/2011/circular-images-with-css3/
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+}
+
+input[type="checkbox"] {
+  transform: scale(2.0);
+  margin-left: 32px;
+}

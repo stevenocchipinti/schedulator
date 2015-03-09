@@ -6,6 +6,6 @@ class Timeslot < ActiveRecord::Base
   end
 
   def datetime_string
-    self.datetime && self.datetime.strftime("%Y-%m-%d %H:%M:%S")
+    self.datetime && self.datetime.strftime("%Y-%m-%d %l:%M %p")
   end
 end
