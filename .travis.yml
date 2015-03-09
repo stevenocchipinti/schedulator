@@ -1,7 +1,7 @@
 language: ruby
 rvm:
 - 2.1.3
-script: xvfb-run bundle exec rake
+script: RAILS_ENV=test xvfb-run bundle exec rake --trace db:migrate default
 deploy:
   provider: heroku
   app: schedulator-app
