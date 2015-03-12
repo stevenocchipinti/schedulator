@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap/dist/js/bootstrap
 //= require_tree .
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
