@@ -1,0 +1,6 @@
+<% checkbox_name = "votes[#{timeslot.id}][#{attendee.id}]" %>
+<%# TODO: This call shouldn't be here :( ViewModel? %>
+<% checked = Vote.exists? timeslot_id: timeslot.id, attendee_id: attendee.id, available: true  %>
+
+<input name="<%= checkbox_name %>" type="hidden" value="0" />
+<%= check_box_tag(checkbox_name, 1, checked) %>

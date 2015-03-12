@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309032258) do
+ActiveRecord::Schema.define(version: 20150310094826) do
 
   create_table "attendees", force: true do |t|
     t.string   "email_address"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20150309032258) do
   create_table "timeslots", force: true do |t|
     t.datetime "datetime"
     t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.boolean  "available"
+    t.integer  "attendee_id"
+    t.integer  "timeslot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :vote]
 
   # GET /events
   # GET /events.json
@@ -27,7 +27,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -63,30 +62,53 @@ class EventsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
+  # POST /events/1/vote
+  # POST /events/1/vote.json
+  def vote
+    vote_params.each do |timeslot_id, attendee_votes|
+      attendee_votes.each do |attendee_id, available|
+        Vote.find_or_initialize_by(
+          timeslot_id: timeslot_id,
+          attendee_id: attendee_id
+        ).update(available: available)
+      end
     end
+    respond_to do |format|
+      format.html { redirect_to @event, notice: 'Votes submitted' }
+      format.json { render action: 'show', status: :created, location: @event }
+    end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(
-        :name,
-        :description,
-        :timeslots_attributes => [
-          :datetime,
-          :datetime_string,
-          :event_id,
-          :id,
-          :_destroy
-        ],
-        :attendees_attributes => [
-          :email_address,
-          :event_id,
-          :id,
-          :_destroy
-        ]
-      )
-    end
+
+  private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(
+      :name,
+      :description,
+      :timeslots_attributes => [
+        :datetime,
+        :datetime_string,
+        :event_id,
+        :id,
+        :_destroy
+      ],
+      :attendees_attributes => [
+        :email_address,
+        :event_id,
+        :id,
+        :_destroy
+      ]
+    )
+  end
+
+  def vote_params
+    # Not sure how to use StrongParameters with dynamic keys
+    params[:votes]
+  end
+
 end

@@ -1,34 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<% users = [
-  "dev@stevenocchipinti.com", "foo", "bar", "baz", "bing", "bong", "blam"
-] %>
+<%= form_tag action: 'vote' do %>
 
-<table class="table event_table">
-  <tr>
-    <td style="width: 100px;"></td>
-    <% @event.attendees.each do |attendee| %>
-      <td>
-        <%= render "gravatar", email: attendee.email_address %>
-      </td>
-    <% end %>
-  </tr>
+  <div class="col-lg-12">
+    <table class="table event_table">
+      <tr>
+        <td style="width: 100px;"></td>
+        <% @event.attendees.each do |attendee| %>
+          <td>
+            <%= render "gravatar", email: attendee.email_address %>
+          </td>
+        <% end %>
+      </tr>
 
-  <% @event.timeslots.each do |timeslot| %>
-    <tr>
-      <td class="event_datetime">
-        <%= timeslot.datetime_string %>
-      </td>
-      <% @event.attendees.each do |attendee| %>
-        <td>
-          <label>
-            <input type="checkbox">
-          </label>
-        </td>
+      <% @event.timeslots.each do |timeslot| %>
+        <tr>
+          <td class="event_datetime">
+            <%= timeslot.datetime_string %>
+          </td>
+          <% @event.attendees.each do |attendee| %>
+            <td>
+              <label>
+                <%= render "vote_checkbox", timeslot: timeslot, attendee: attendee %>
+              </label>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-</table>
+    </table>
+  </div>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  <div class="form-group">
+    <div class="col-lg-12">
+      <button type="submit" class="btn btn-primary">Save Votes</button>
+      <%= link_to 'Admin', edit_event_path(@event), class: "btn btn-default" %>
+      <%= link_to 'Cancel', events_path, class: "btn btn-default" %>
+    </div>
+  </div>
+
+<% end %>
