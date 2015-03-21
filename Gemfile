@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'therubyracer', platforms: :ruby
 
 gem 'chronic'
+gem 'hashids'
 
 
 group :development, :test do
