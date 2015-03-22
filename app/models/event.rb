@@ -11,4 +11,5 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :attendees,
     allow_destroy: true,
     reject_if: lambda { |t| t[:email_address].blank? }
+
 end

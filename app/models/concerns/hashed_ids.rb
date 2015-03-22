@@ -1,30 +1,44 @@
 require 'hashids'
 
 module HashedIds
-  module ClassMethods
-    def hashids
-      Hashids.new(table_name, 6)
-    end
+  extend ActiveSupport::Concern
 
-    def encode_id(id)
-      hashids.encode(id)
-    end
-
-    def decode_id(id)
-      hashids.decode(id).first
-    end
+  def short_hashid
+    self.class.encode_short_hashid(id)
   end
 
-  def self.included(base)
-    base.extend ClassMethods
-  end
-
-  def encoded_id
-    self.class.encode_id(id)
+  def long_hashid
+    self.class.encode_long_hashid(id)
   end
 
   def to_param
-    encoded_id
+    short_hashid
+  end
+
+
+  module ClassMethods
+    def encode_short_hashid(id)
+      Hashids.new(hashids_salt, 6).encode(id)
+    end
+
+    def decode_short_hashid(id)
+      Hashids.new(hashids_salt, 6).decode(id).first
+    end
+
+    def encode_long_hashid(id)
+      Hashids.new(hashids_salt, 20).encode(id)
+    end
+
+    def decode_long_hashid(id)
+      Hashids.new(hashids_salt, 20).decode(id).first
+    end
+
+    private
+
+    def hashids_salt
+      Rails.application.class.parent_name + table_name
+    end
+
   end
 
 end

@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :event_from_short_hashid, only: [:show, :vote]
+  before_action :event_from_long_hashid, only: [:edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -82,8 +83,12 @@ class EventsController < ApplicationController
 
   private
 
-  def set_event
-    @event = Event.find Event.decode_id(params[:id])
+  def event_from_short_hashid
+    @event = Event.find Event.decode_short_hashid(params[:short_hashid])
+  end
+
+  def event_from_long_hashid
+    @event = Event.find Event.decode_long_hashid(params[:long_hashid])
   end
 
   def event_params
