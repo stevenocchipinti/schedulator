@@ -1,11 +1,14 @@
 <%# This partial relies on having an `email` local variable available %>
 
 <% md5 = Digest::MD5.hexdigest email %>
-<% gravatar_url = "https://secure.gravatar.com/avatar/#{md5}.png?d=retro" %>
+<% gravatar_url = "https://secure.gravatar.com/avatar/#{md5}.png?d=blank" %>
+
+
+<div class="avatar"><%= email[0] %></div>
 
 <div
   class="avatar"
-  style="background: url(<%= gravatar_url %>) no-repeat;"
+  style="background: url(<%= gravatar_url %>) no-repeat; position: absolute;"
   data-email="<%= email %>"
   data-toggle="tooltip"
   title=""
